@@ -19,6 +19,7 @@ import playsound
 import os
 import random
 from gtts import gTTS
+
 print('wait...')
 
 
@@ -37,6 +38,7 @@ def record_audio(ask = False):
         except Exception:
             print('Oops something went Wrong')
             lee_voice('Oops something went Wrong Try Again')
+
         return voice_data
 def lee_voice(audio_string):
 #Play audio text to voice
@@ -51,8 +53,6 @@ def lee_voice(audio_string):
 
 
 #Read Camera
-
-
 class Player(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -135,12 +135,14 @@ class Player(tk.Frame):
             _,frame = self.cap.read()
             frame = cv2.flip(frame,2)
             frame = cv2.resize(frame,(600,500))
+
             # Get hand data from the rectangle sub window
             cv2.rectangle(frame, (0,1), (300,500), (255, 0, 0), 0)
             crop_image = frame[1:500, 0:300]
             
             #Step -2
             hsv = cv2.cvtColor(crop_image, cv2.COLOR_BGR2HSV)
+
             #detecting hand
             l_h = cv2.getTrackbarPos("Lower_H", "Color Adjustments")
             l_s = cv2.getTrackbarPos("Lower_S", "Color Adjustments")
@@ -313,9 +315,10 @@ class Player(tk.Frame):
             
             
             
-             #self.s=self.voice_data.replace('play','')
+            #self.s=self.voice_data.replace('play','')
              
-             #songlistn['text'] = self.voice_data
+            #songlistn['text'] = self.voice_data
+
         elif 'exit' in voice_data:
             lee_voice('Thanks have a good day ')
             end()
